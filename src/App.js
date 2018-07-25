@@ -15,11 +15,18 @@ class App extends Component {
     this.render();
   }
 
+  deleteCharacterHandler = (event, index) => {
+    console.log('Deleting ', index);
+    let characters = this.state.text.split('');
+    characters.splice(index, 1);
+    this.setState({text: characters.join('')});
+  }
+
   render() {
     let characters = (
       <div>
-        {this.state.text.split('').map(character =>
-          <CharComponent character={character} />
+        {this.state.text.split('').map((character, index) =>
+          <CharComponent character={character} key={index} clicked={(event) => this.deleteCharacterHandler(event, index)}/>
         )}
       </div>
     );
@@ -36,7 +43,7 @@ class App extends Component {
           <li className="done">Inside the ValidationComponent, either output "Text too short" or "Text long enough" depending on the text length (e.g. take 5 as a minimum length)</li>
           <li className="done">Create another component (=> CharComponent) and style it as an inline box (=> display: inline-block, padding: 16px, text-align: center, margin: 16px, border: 1px solid black).</li>
           <li className="done">Render a list of CharComponents where each CharComponent receives a different letter of the entered text (in the initial input field) as a prop.</li>
-          <li>When you click a CharComponent, it should be removed from the entered text.</li>
+          <li className="done">When you click a CharComponent, it should be removed from the entered text.</li>
         </ol>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
       </div>

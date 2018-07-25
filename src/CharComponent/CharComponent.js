@@ -5,12 +5,12 @@ const charComponent = (props) => {
         display: "inline-block",
         padding: "16px",
         textAlign: "center",
-        margin: "16px",
+        margin: "0px",
         border: "1px solid black"
     }
 
     return (
-        <div className="charComponent" style={style}>
+        <div className="charComponent" style={style} onClick={props.clicked}>
             <p> {props.character} </p>
         </div>
     )
